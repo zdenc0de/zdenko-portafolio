@@ -1,3 +1,5 @@
+import "./globals.css";
+
 import { Plus_Jakarta_Sans, Bebas_Neue } from "next/font/google";
 
 const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });

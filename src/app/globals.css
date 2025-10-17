@@ -1,14 +1,17 @@
-@import "tailwindcss";          /* Tailwind v4 */
-@import "tw-animate-css";       /* opcional: tus animaciones */
+@import "tailwindcss";
+/* si NO instalaste este paquete, quítalo */
+/* @import "tw-animate-css"; */
 
 @custom-variant dark (&:is(.dark *));
 
-/* ---- Mapea los tokens de Tailwind a tus variables ---- */
+/* ====== Mapear tokens Tailwind a tus variables ====== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
-  --font-mono: var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -31,51 +34,43 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ======= PALETA (LIGHT por defecto) ======= */
+/* ====== Paleta (light por defecto) ====== */
 :root {
-  /* Espaciado/radios */
   --radius: 0.625rem;
 
-  /* === Branding Zden === */
-  --background: #111433;             /* azul oscuro */
-  --foreground: #ffffff;              /* texto principal */
+  /* Branding */
+  --background: #111433;
+  --foreground: #ffffff;
 
-  --primary: #ffffff;                 /* botones primarios en claro */
+  --primary: #ffffff;
   --primary-foreground: #111433;
 
-  --secondary: #F5741C;               /* naranja brand */
-  --secondary-foreground: #0b0f29;    /* texto sobre secondary */
+  --secondary: #F5741C;
+  --secondary-foreground: #0b0f29;
 
-  /* Apoyos */
   --muted: color-mix(in oklab, var(--foreground) 10%, transparent);
   --muted-foreground: #c8cbe8;
-  --accent: #ffffff0d;                /* blanco con opacidad */
+
+  --accent: #ffffff0d;
   --accent-foreground: var(--foreground);
+
   --destructive: #e5484d;
 
-  /* Bordes/inputs/ring */
-  --border: #ffffff1a;                /* blanco 10% */
-  --input: #ffffff26;                 /* 15% */
+  --border: #ffffff1a;
+  --input: #ffffff26;
   --ring: #a3a6c7;
 
-  /* Gráficas (opcionales) */
-  --chart-1: #8bd3dd;
-  --chart-2: #a0c4ff;
-  --chart-3: #bdb2ff;
-  --chart-4: #ffc6ff;
-  --chart-5: #ffd6a5;
-
-  /* Gradiente decorativo usado en el hero */
+  /* Gradiente decorativo */
   --background-image-gradient-cover: linear-gradient(
     90deg,
-    rgba(170, 54, 124, 0.25) 0%,
-    rgba(74, 47, 189, 0.25) 100%
+    rgba(170,54,124,.25) 0%,
+    rgba(74,47,189,.25) 100%
   );
 }
 
-/* ======= MODO OSCURO (si agregas class="dark" en <html>) ======= */
+/* ====== Dark (si usas class="dark" en <html>) ====== */
 .dark {
-  --background: #0b0f29;             /* aún más oscuro */
+  --background: #0b0f29;
   --foreground: #ffffff;
 
   --primary: #ffffff;
@@ -93,21 +88,12 @@
   --border: #ffffff1a;
   --input: #ffffff26;
   --ring: #a3a6c7;
-
-  --chart-1: #7dd3fc;
-  --chart-2: #a78bfa;
-  --chart-3: #f472b6;
-  --chart-4: #34d399;
-  --chart-5: #fbbf24;
 }
 
-/* ======= Base Tailwind ======= */
+/* ====== Base ====== */
 @layer base {
   * { @apply border-border outline-ring/50; }
-  body { @apply bg-background text-foreground; }
-}
-
-@theme inline {
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  a { @apply text-foreground; } /* hereda color; evita azul por defecto */
 }
