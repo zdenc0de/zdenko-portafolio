@@ -37,7 +37,7 @@
     --secondary: hsl(222.2 47.4% 11.2%);
     --secondary-foreground: hsl(0 0% 98%);
 
-    --muted: hsl(0 0% 14.9%);          /* Gris oscuro */
+    --muted: hsl(0 0% 14.9%);         
     --muted-foreground: hsl(0 0% 63.9%);
 
     --accent: hsl(0 0% 14.9%);

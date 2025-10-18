@@ -1,6 +1,7 @@
 import "./globals.css";
-
 import { Plus_Jakarta_Sans, Bebas_Neue } from "next/font/google";
+
+import { LenisProvider } from "@/components/motion/LenisProvider"; 
 
 const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
 const display = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-display" });
@@ -8,7 +9,13 @@ const display = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--fon
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${sans.variable} ${display.variable} antialiased`}>{children}</body>
+
+      <body className={`${sans.variable} ${display.variable} antialiased`}>
+        {/* 3. Envolver el contenido con el LenisProvider */}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
+      </body>
     </html>
   );
 }
