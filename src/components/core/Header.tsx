@@ -55,7 +55,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
 
         <Link href="/" className="group inline-flex items-center gap-2" scroll={false}>
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-secondary/90 shadow-lg font-bold text-black border border-white/10">Z</span>
+          <img className="h-8 w-8 rounded-lg bg-secondary/90 shadow-lg border border-white/10" src="/logoy2k.png" alt="Logo" />
           <span className="text-xl font-bold tracking-tight ">
             <span style={{ fontFamily: "var(--font-display)" }}>ZDENCODE</span>
           </span>
