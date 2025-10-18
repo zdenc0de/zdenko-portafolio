@@ -1,99 +1,65 @@
 @import "tailwindcss";
-/* si NO instalaste este paquete, quítalo */
-/* @import "tw-animate-css"; */
 
-@custom-variant dark (&:is(.dark *));
-
-/* ====== Mapear tokens Tailwind a tus variables ====== */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-display: var(--font-display);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-
-/* ====== Paleta (light por defecto) ====== */
-:root {
-  --radius: 0.625rem;
-
-  /* Branding */
-  --background: #111433;
-  --foreground: #ffffff;
-
-  --primary: #ffffff;
-  --primary-foreground: #111433;
-
-  --secondary: #F5741C;
-  --secondary-foreground: #0b0f29;
-
-  --muted: color-mix(in oklab, var(--foreground) 10%, transparent);
-  --muted-foreground: #c8cbe8;
-
-  --accent: #ffffff0d;
-  --accent-foreground: var(--foreground);
-
-  --destructive: #e5484d;
-
-  --border: #ffffff1a;
-  --input: #ffffff26;
-  --ring: #a3a6c7;
-
-  /* Gradiente decorativo */
-  --background-image-gradient-cover: linear-gradient(
-    90deg,
-    rgba(170,54,124,.25) 0%,
-    rgba(74,47,189,.25) 100%
-  );
-}
-
-/* ====== Dark (si usas class="dark" en <html>) ====== */
-.dark {
-  --background: #0b0f29;
-  --foreground: #ffffff;
-
-  --primary: #ffffff;
-  --primary-foreground: #0b0f29;
-
-  --secondary: #F5741C;
-  --secondary-foreground: #0b0f29;
-
-  --muted: #ffffff14;
-  --muted-foreground: #c8cbe8;
-  --accent: #ffffff0d;
-  --accent-foreground: var(--foreground);
-
-  --destructive: #ff6369;
-  --border: #ffffff1a;
-  --input: #ffffff26;
-  --ring: #a3a6c7;
-}
-
-/* ====== Base ====== */
 @layer base {
-  * { @apply border-border outline-ring/50; }
-  html { scroll-behavior: smooth; }
-  body { @apply bg-background text-foreground font-sans antialiased; }
-  a { @apply text-foreground; } /* hereda color; evita azul por defecto */
+  :root {
+    --background: hsl(0 0% 100%);       
+    --foreground: hsl(0 0% 3.9%);       
+
+    --primary: hsl(0 0% 9%);            
+    --primary-foreground: hsl(0 0% 98%);  
+
+    --secondary: hsl(222.2 47.4% 11.2%);  
+    --secondary-foreground: hsl(0 0% 98%);
+
+    --muted: hsl(0 0% 96.1%);           
+    --muted-foreground: hsl(0 0% 45.1%);  
+
+    --accent: hsl(0 0% 96.1%);           
+    --accent-foreground: hsl(0 0% 9%);
+
+    --destructive: hsl(0 84.2% 60.2%); 
+
+    --border: hsl(0 0% 89.8%);          
+    --input: hsl(0 0% 89.8%);
+    --ring: hsl(0 0% 3.9%);             
+
+    --radius: 0.5rem;                  
+  }
+
+  /* ====== Dark Mode ====== */
+  .dark {
+    --background: hsl(0 0% 3.9%);      
+    --foreground: hsl(0 0% 98%);      
+
+    --primary: hsl(0 0% 98%);
+    --primary-foreground: hsl(0 0% 9%);
+
+    --secondary: hsl(222.2 47.4% 11.2%);
+    --secondary-foreground: hsl(0 0% 98%);
+
+    --muted: hsl(0 0% 14.9%);          /* Gris oscuro */
+    --muted-foreground: hsl(0 0% 63.9%);
+
+    --accent: hsl(0 0% 14.9%);
+    --accent-foreground: hsl(0 0% 98%);
+
+    --destructive: hsl(0 62.8% 30.6%);
+
+    --border: hsl(0 0% 14.9%);
+    --input: hsl(0 0% 14.9%);
+    --ring: hsl(0 0% 83.1%);
+  }
 }
+
+/* ====== Estilos Base ====== */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+    body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      scroll-behavior: smooth;
+    }
+  }
