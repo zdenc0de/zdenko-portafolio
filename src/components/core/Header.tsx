@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react"; // ✨ 1. Importa useEffect
+import { useState, useEffect } from "react"; 
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -17,20 +17,18 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const activeSection = useActiveSection(["#home", "#work", "#about", "#contact"]);
   const lenis = useLenis();
-
-  // ✨ 2. MEJORA: Hook para bloquear el scroll cuando el menú está abierto
   useEffect(() => {
     if (isMenuOpen) {
-      lenis?.stop(); // Detiene el scroll de Lenis
+      lenis?.stop(); 
     } else {
-      lenis?.start(); // Reanuda el scroll de Lenis
+      lenis?.start();
     }
   }, [isMenuOpen, lenis]);
 
   const scrollTo = (target: string, e?: React.MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
     lenis?.scrollTo(target, { duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    setIsMenuOpen(false); // Siempre cierra el menú después de la navegación
+    setIsMenuOpen(false);
   };
 
   return (
@@ -49,7 +47,6 @@ export function Header() {
             </span>
           </a>
 
-          {/* --- Navegación de Escritorio --- */}
           <nav className="relative hidden items-center gap-1 rounded-full border border-border bg-muted/50 p-1 md:flex">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} onClick={(e) => scrollTo(item.href, e)} className={cn("relative rounded-full px-4 py-2 text-sm font-medium transition-colors", activeSection === item.href ? "text-primary-foreground" : "text-foreground/70 hover:text-foreground")}>
@@ -60,8 +57,7 @@ export function Header() {
               </a>
             ))}
           </nav>
-          
-          {/* --- Botón de CV para Escritorio --- */}
+
           <div className="hidden items-center pr-2 md:flex">
              <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-4 py-2 text-sm font-medium text-secondary transition-colors hover:bg-secondary/10">
                Download CV
@@ -69,7 +65,7 @@ export function Header() {
           </div>
 
           {/* --- Botón de Menú Móvil --- */}
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 md:hidden">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 md:hidden" aria-label="Toggle menu">
             <motion.div animate={isMenuOpen ? "open" : "closed"} className="relative h-5 w-5">
               <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 5 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '20%'}} />
               <motion.span variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '50%'}} />
@@ -79,13 +75,11 @@ export function Header() {
         </div>
       </motion.header>
 
-      {/* --- Overlay de Menú Móvil (sin cambios) --- */}
       <MobileNav isOpen={isMenuOpen} scrollTo={scrollTo} />
     </>
   );
 }
 
-// El componente MobileNav se mantiene igual, ya está perfecto.
 function MobileNav({ isOpen, scrollTo }: { isOpen: boolean; scrollTo: (target: string, e?: React.MouseEvent<HTMLAnchorElement>) => void }) {
   const menuVariants = {
     open: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 200, damping: 25, staggerChildren: 0.1 } },

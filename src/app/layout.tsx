@@ -11,7 +11,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
 
       <body className={`${sans.variable} ${display.variable} antialiased`}>
-        {/* 3. Envolver el contenido con el LenisProvider */}
         <LenisProvider>
           {children}
         </LenisProvider>

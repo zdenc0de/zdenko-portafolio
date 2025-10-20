@@ -24,7 +24,7 @@ export const cases: Case[] = [
     title: "SIC Final Project",
     blurb: "Lung cancer detection using medical imaging.",
     cover: "/cards/image.png",
-    video: "/media/cases/sic-final-project-video.mp4",
+    video: "/videos/sic-video.mp4",
     tags: ["Python", "Machine Learning", "Image Processing"],
     impact: "Samsung Innovation Campus 2024 best final project",
   },
