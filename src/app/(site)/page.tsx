@@ -1,7 +1,7 @@
 import { Header } from "@/components/core/Header";
 import { Hero } from "@/components/sections/Hero";
 import { Work } from "@/components/sections/Work";
-// import About, Services, Contact...
+import { About } from "@/components/sections/About";
 
 export default function Page() {
   return (
@@ -10,7 +10,7 @@ export default function Page() {
       <main>
         <Hero />
         <Work />
-        {/* <About /> */}
+        <About />
         {/* <Services /> */}
         {/* <Contact /> */}
       </main>

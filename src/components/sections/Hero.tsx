@@ -34,7 +34,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
               </span>
-              2027 Graduate | Seeking 2026 Internship Opportunities
+              2028 Graduate | Seeking Internship Opportunities
             </motion.p>
 
             <motion.h1
@@ -58,12 +58,14 @@ export function Hero() {
               variants={fadeUp()}
               className="flex flex-col items-center gap-4 sm:flex-row"
             >
+              {/*
               <a href="#work" onClick={(e) => scrollTo("#work", e)} className="w-full rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-transform duration-200 hover:scale-[1.03] sm:w-auto">
                 View Projects
               </a>
               <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="w-full rounded-full border border-border px-7 py-3 font-semibold text-foreground/80 transition-colors duration-200 hover:bg-muted sm:w-auto">
                 Download CV
               </Link>
+              */}
             </motion.div>
           </div>
         </motion.div>
