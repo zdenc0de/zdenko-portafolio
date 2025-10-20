@@ -1,9 +1,11 @@
 "use client";
+
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; // ✨ 1. Importa useEffect
+import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/cn";
-// Importar Lenis si la quieres usar directamente para TypeScript
-// import Lenis from '@studio-freight/lenis'; 
 
 const navItems = [
   { href: "#work", label: "Work" },
@@ -11,91 +13,102 @@ const navItems = [
   { href: "#contact", label: "Contact" },
 ];
 
-// Asumiendo que has expuesto la instancia de Lenis en 'window.lenis'
-declare global {
-  interface Window {
-    lenis: any; // Define la propiedad lenis en el objeto window
-  }
-}
-
 export function Header() {
-  const [activeSection, setActiveSection] = useState<string>("work");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const activeSection = useActiveSection(["#home", "#work", "#about", "#contact"]);
+  const lenis = useLenis();
 
-  // El Hook de detección de scroll (useEffect) NO CAMBIA, 
-  // ya que sigue dependiendo de las posiciones nativas de la ventana para detectar la sección activa.
+  // ✨ 2. MEJORA: Hook para bloquear el scroll cuando el menú está abierto
   useEffect(() => {
-    const handleScroll = () => {
-      let currentActive = "";
-      navItems.forEach((item) => {
-        const section = document.querySelector(item.href);
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          // Lenis gestiona el scroll, pero esta detección nativa sigue siendo fiable
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            currentActive = item.href;
-          }
-        }
-      });
-      if (currentActive) {
-        setActiveSection(currentActive);
-      }
-    };
+    if (isMenuOpen) {
+      lenis?.stop(); // Detiene el scroll de Lenis
+    } else {
+      lenis?.start(); // Reanuda el scroll de Lenis
+    }
+  }, [isMenuOpen, lenis]);
 
-    // Para Lenis, usamos el evento 'scroll' global, pero también podemos escuchar un evento 
-    // personalizado de Lenis si lo configuraste. Mantendremos el nativo por simplicidad.
-    window.addEventListener("useLenis", handleScroll);
-    handleScroll(); 
-
-    return () => window.removeEventListener("useLenis", handleScroll);
-  }, []);
-
+  const scrollTo = (target: string, e?: React.MouseEvent<HTMLAnchorElement>) => {
+    e?.preventDefault();
+    lenis?.scrollTo(target, { duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    setIsMenuOpen(false); // Siempre cierra el menú después de la navegación
+  };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-white/5 backdrop-blur-xl transition-all duration-300">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className="fixed inset-x-0 top-4 z-50 px-4"
+      >
+        <div className="container mx-auto flex max-w-6xl items-center justify-between rounded-full border border-border bg-background/80 p-2 backdrop-blur-sm">
+          <a href="#home" onClick={(e) => scrollTo("#home", e)} className="group inline-flex items-center gap-3 px-3">
+            <img className="h-5 w-auto" src="/logoy2k.png" alt="Zdencode Logo" />
+            <span className="text-xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
+              ZDENCODE
+            </span>
+          </a>
 
-        <Link href="/" className="group inline-flex items-center gap-2" scroll={false}>
-          <img className="h-8 w-8 rounded-lg bg-secondary/90 shadow-lg border border-white/10" src="/logoy2k.png" alt="Logo" />
-          <span className="text-xl font-bold tracking-tight ">
-            <span style={{ fontFamily: "var(--font-display)" }}>ZDENCODE</span>
-          </span>
-        </Link>
+          {/* --- Navegación de Escritorio --- */}
+          <nav className="relative hidden items-center gap-1 rounded-full border border-border bg-muted/50 p-1 md:flex">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} onClick={(e) => scrollTo(item.href, e)} className={cn("relative rounded-full px-4 py-2 text-sm font-medium transition-colors", activeSection === item.href ? "text-primary-foreground" : "text-foreground/70 hover:text-foreground")}>
+                {activeSection === item.href && (
+                  <motion.span layoutId="active-pill" className="absolute inset-0 z-0 rounded-full bg-primary" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+                )}
+                <span className="relative z-10">{item.label}</span>
+              </a>
+            ))}
+          </nav>
+          
+          {/* --- Botón de CV para Escritorio --- */}
+          <div className="hidden items-center pr-2 md:flex">
+             <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-4 py-2 text-sm font-medium text-secondary transition-colors hover:bg-secondary/10">
+               Download CV
+             </Link>
+          </div>
 
-        <nav className="hidden gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md md:flex">
-          {navItems.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition duration-200",
-                activeSection === n.href
-                  ? "bg-white text-black shadow-md" 
-                  : "text-white/80 hover:bg-white/10 hover:text-white" 
-              )}
+          {/* --- Botón de Menú Móvil --- */}
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 md:hidden">
+            <motion.div animate={isMenuOpen ? "open" : "closed"} className="relative h-5 w-5">
+              <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 5 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '20%'}} />
+              <motion.span variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '50%'}} />
+              <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -5 } }} className="absolute h-0.5 w-full bg-foreground" style={{bottom: '20%'}}/>
+            </motion.div>
+          </button>
+        </div>
+      </motion.header>
 
-              onClick={(e) => {
-                e.preventDefault();
+      {/* --- Overlay de Menú Móvil (sin cambios) --- */}
+      <MobileNav isOpen={isMenuOpen} scrollTo={scrollTo} />
+    </>
+  );
+}
 
-                if (window.lenis) {
-                    window.lenis.scrollTo(n.href, { duration: 1.0, easing: (t: number) => t * t });
-                } else {
+// El componente MobileNav se mantiene igual, ya está perfecto.
+function MobileNav({ isOpen, scrollTo }: { isOpen: boolean; scrollTo: (target: string, e?: React.MouseEvent<HTMLAnchorElement>) => void }) {
+  const menuVariants = {
+    open: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 200, damping: 25, staggerChildren: 0.1 } },
+    closed: { opacity: 0, y: "-100%", transition: { type: "spring", stiffness: 200, damping: 25, when: "afterChildren" } },
+  };
 
-                    document.querySelector(n.href)?.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              {n.label}
-            </a>
-          ))}
-        </nav>
+  const itemVariants = {
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: 20 },
+  };
 
-        <Link 
-          href="/cv.pdf" 
-          className="hidden rounded-full border border-secondary px-4 py-2 text-sm font-medium text-secondary/90 hover:bg-secondary/10 transition-colors duration-200 md:inline-block"
-        >
+  return (
+    <motion.div variants={menuVariants} initial="closed" animate={isOpen ? "open" : "closed"} className="fixed inset-0 z-40 flex flex-col items-center justify-center space-y-8 bg-background md:hidden">
+      {navItems.map((item) => (
+        <motion.a key={item.href} href={item.href} variants={itemVariants} onClick={(e) => scrollTo(item.href, e)} className="text-3xl font-semibold">
+          {item.label}
+        </motion.a>
+      ))}
+      <motion.div variants={itemVariants}>
+        <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-6 py-3 text-lg font-medium text-secondary">
           Download CV
         </Link>
-      </div>
-    </header>
+      </motion.div>
+    </motion.div>
   );
 }

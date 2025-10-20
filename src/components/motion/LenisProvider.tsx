@@ -1,11 +1,11 @@
 "use client";
 
-import { useLenis } from './useLenis';
-
+import { ReactLenis } from "lenis/react";
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
-  
-  useLenis(true); 
-  
-  return <>{children}</>;
+  return (
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothTouch: true }}>
+      {children}
+    </ReactLenis>
+  );
 }

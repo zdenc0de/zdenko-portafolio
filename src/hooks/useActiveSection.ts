@@ -1,0 +1,38 @@
+// src/hooks/useActiveSection.ts
+import { useState, useEffect } from "react";
+
+export function useActiveSection(sectionIds: string[]) {
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      {
+        // El trigger se activa cuando la sección cruza la línea central de la pantalla
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0,
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      // Quitamos el '#' para buscar el elemento por ID
+      const el = document.querySelector(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sectionIds.forEach((id) => {
+        const el = document.querySelector(id);
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, [sectionIds]);
+
+  return activeSection;
+}
