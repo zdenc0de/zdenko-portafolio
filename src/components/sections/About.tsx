@@ -7,7 +7,7 @@ import { fadeUp, stagger } from "@/components/motion/variants";
 
 // Lista de tus tecnologías principales. Puedes mover esto a tu archivo /data si prefieres.
 const techStack = [
-  "Python", "ROS", "TypeScript", "React", "Next.js", "Tailwind CSS", "PostgreSQL", "Firebase"
+  "Python", "TypeScript", "React", "Next.js", "Tailwind CSS", "PostgreSQL"
 ];
 
 export function About() {
@@ -43,7 +43,7 @@ export function About() {
             <h3 className="text-lg font-semibold text-foreground">My Tech Stack</h3>
             <div className="flex flex-wrap gap-2">
               {techStack.map((tech) => (
-                <span key={tech} className="rounded-md bg-muted px-3 py-1 text-sm font-medium">
+                <span key={tech} className="rounded-md bg-muted px-3 py-1 text-sm font-medium ">
                   {tech}
                 </span>
               ))}

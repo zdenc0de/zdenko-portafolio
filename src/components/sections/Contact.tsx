@@ -3,11 +3,10 @@
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/components/motion/variants";
 
-// ✨ Puedes mover esto a tu archivo data/site.ts si lo prefieres
 const socialLinks = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/tu-usuario" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/zdenko-abarca-209050355/" },
   { name: "GitHub", href: "https://github.com/zdenc0de" },
-  { name: "Email", href: "mailto:tu-email@correo.com" },
+  { name: "Email", href: "mailto:zdenkocruz04@gmail.com" },
 ];
 
 export function Contact() {
@@ -20,7 +19,6 @@ export function Contact() {
         viewport={{ once: true, amount: 0.4 }}
         className="mx-auto max-w-6xl px-6 text-center"
       >
-        {/* === Titular === */}
         <motion.h2
           variants={fadeUp()}
           className="text-4xl font-black text-foreground md:text-6xl"
@@ -29,7 +27,6 @@ export function Contact() {
           Get In Touch
         </motion.h2>
 
-        {/* === Párrafo de Cierre === */}
         <motion.p
           variants={fadeUp()}
           className="mx-auto mt-6 max-w-xl text-lg text-foreground/80"
