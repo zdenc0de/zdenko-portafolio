@@ -7,7 +7,7 @@ import { stagger } from "@/components/motion/variants";
 
 export function Work() {
   return (
-    <Section id="work">
+    <Section id="work" >
       <div className="flex items-end justify-between">
         <h2 className="text-4xl font-black md:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
           Selected Work

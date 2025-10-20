@@ -12,7 +12,7 @@ const techStack = [
 
 export function About() {
   return (
-    <section id="about" className="">
+    <section id="about" className="min-h-screen pt-24 md:pt-28 flex items-center justify-center">
       <motion.div
         variants={stagger()}
         initial="hidden"
@@ -58,7 +58,7 @@ export function About() {
         >
           {/* Considera usar una foto tuya más casual o en un entorno de trabajo/estudio */}
           <Image
-            src="/casual-photo.jpg" 
+            src="/yo-lidar.jpg"
             alt="Zdenko working on a project"
             fill
             className="rounded-2xl object-cover ring-1 ring-border"

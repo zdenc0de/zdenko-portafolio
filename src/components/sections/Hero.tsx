@@ -15,9 +15,7 @@ export function Hero() {
   };
 
   return (
-    <div className="min-h-screen pt-24 md:pt-28 flex items-center justify-center">
-      <section id="home" className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-20 md:grid-cols-2 md:py-0">
-
+    <section id="home" className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-20 md:grid-cols-2 md:py-0 min-h-screen pt-24 md:pt-28">
         <motion.div
           variants={stagger(0.05)} 
           initial="hidden"
@@ -58,14 +56,6 @@ export function Hero() {
               variants={fadeUp()}
               className="flex flex-col items-center gap-4 sm:flex-row"
             >
-              {/*
-              <a href="#work" onClick={(e) => scrollTo("#work", e)} className="w-full rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-transform duration-200 hover:scale-[1.03] sm:w-auto">
-                View Projects
-              </a>
-              <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="w-full rounded-full border border-border px-7 py-3 font-semibold text-foreground/80 transition-colors duration-200 hover:bg-muted sm:w-auto">
-                Download CV
-              </Link>
-              */}
             </motion.div>
           </div>
         </motion.div>
@@ -85,8 +75,8 @@ export function Hero() {
             className="rounded-3xl object-cover ring-1 ring-border shadow-2xl "
           />
           <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
+          <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
         </motion.div>
-      </section>
-    </div>
+    </section>
   );
 }
