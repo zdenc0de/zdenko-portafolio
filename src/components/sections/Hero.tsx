@@ -76,14 +76,15 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative mx-auto aspect-[4/5] w-72 max-w-[24rem] md:w-[28rem] mt-10 md:mt-0"
         >
-          <div className="absolute -inset-10 -z-10 rounded-full bg-secondary/15 blur-[6rem]" />
+          <div className="absolute -inset-10 -z-10 rounded-full bg-secondary/15 blur-[6rem] " />
           <Image
             src="/yo-delfin.jpg"
             alt="Portrait of Zdenko Abarca"
             fill
             priority
-            className="rounded-3xl object-cover ring-1 ring-border shadow-2xl"
+            className="rounded-3xl object-cover ring-1 ring-border shadow-2xl "
           />
+          <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
         </motion.div>
       </section>
     </div>
