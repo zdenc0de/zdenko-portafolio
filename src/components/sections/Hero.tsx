@@ -75,7 +75,6 @@ export function Hero() {
             className="rounded-3xl object-cover ring-1 ring-border shadow-2xl "
           />
           <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
-          <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
         </motion.div>
     </section>
   );

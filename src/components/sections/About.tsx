@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/components/motion/variants";
 
@@ -11,12 +10,13 @@ const techStack = [
 
 export function About() {
   return (
-    <section id="about" className="min-h-screen pt-24 md:pt-28 flex items-center justify-center">
+    // ✨ MEJORA 1: Cambiado min-h-screen por un padding vertical consistente
+    <section id="about" className="py-24 sm:py-32">
       <motion.div
         variants={stagger()}
         initial="hidden"
-        whileInView="show" 
-        viewport={{ once: true, amount: 0.4 }} 
+        whileInView="show"
+        viewport={{ once: true, amount: 0.4 }}
         className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-6 md:grid-cols-2"
       >
         <div className="space-y-6 text-foreground/80 md:text-lg">
@@ -37,11 +37,17 @@ export function About() {
           </motion.p>
 
           {/* === Tech Stack === */}
-          <motion.div variants={fadeUp()} className="space-y-3 pt-4">
+          <motion.div variants={fadeUp()} className="space-y-4 pt-4">
             <h3 className="text-lg font-semibold text-foreground">My Tech Stack</h3>
-            <div className="flex flex-wrap gap-2">
+            
+            {/* ✨ MEJORA 2: Reemplazado 'flex-wrap' por un 'grid' predecible */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {techStack.map((tech) => (
-                <span key={tech} className="rounded-md bg-muted px-3 py-1 text-sm font-medium ">
+                <span 
+                  key={tech} 
+                  // ✨ MEJORA 3: Estilos de tag más limpios
+                  className="rounded-md bg-muted px-3 py-1.5 text-sm font-medium text-muted-foreground"
+                >
                   {tech}
                 </span>
               ))}
@@ -51,18 +57,21 @@ export function About() {
 
         {/* === Columna de Imagen === */}
         <motion.div
-          variants={fadeUp()}
-          className="relative mx-auto h-96 w-full max-w-sm"
-        >
-          <Image
-            src="/yo-lidar.jpg"
-            alt="Zdenko working on a project"
-            fill
-            className="rounded-2xl object-cover ring-1 ring-border"
-          />
-
-          <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
-        </motion.div>
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative mx-auto aspect-[4/5] w-72 max-w-[24rem] md:w-[28rem] mt-10 md:mt-0"
+                >
+                  <div className="absolute -inset-10 -z-10 rounded-full bg-secondary/15 blur-[6rem] " />
+                  <Image
+                    src="/images/yo-samsung.jpg"
+                    alt="Portrait of Zdenko Abarca"
+                    fill
+                    priority
+                    className="rounded-3xl object-cover ring-1 ring-border shadow-2xl "
+                  />
+                  <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
+                </motion.div>
       </motion.div>
     </section>
   );
