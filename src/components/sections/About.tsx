@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/components/motion/variants";
 
-// Lista de tus tecnologías principales. Puedes mover esto a tu archivo /data si prefieres.
 const techStack = [
   "Python", "TypeScript", "React", "Next.js", "Tailwind CSS", "PostgreSQL"
 ];
@@ -20,7 +19,6 @@ export function About() {
         viewport={{ once: true, amount: 0.4 }} 
         className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-6 md:grid-cols-2"
       >
-        {/* === Columna de Texto === */}
         <div className="space-y-6 text-foreground/80 md:text-lg">
           <motion.h2
             variants={fadeUp()}
@@ -56,14 +54,13 @@ export function About() {
           variants={fadeUp()}
           className="relative mx-auto h-96 w-full max-w-sm"
         >
-          {/* Considera usar una foto tuya más casual o en un entorno de trabajo/estudio */}
           <Image
             src="/yo-lidar.jpg"
             alt="Zdenko working on a project"
             fill
             className="rounded-2xl object-cover ring-1 ring-border"
           />
-          {/* Elemento decorativo opcional */}
+
           <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
         </motion.div>
       </motion.div>

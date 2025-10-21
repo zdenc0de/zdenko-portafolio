@@ -2,11 +2,24 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/components/motion/variants";
+import Image from "next/image"; 
 
 const socialLinks = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/zdenko-abarca-209050355/" },
-  { name: "GitHub", href: "https://github.com/zdenc0de" },
-  { name: "Email", href: "mailto:zdenkocruz04@gmail.com" },
+  { 
+    name: "LinkedIn", 
+    href: "https://www.linkedin.com/in/zdenko-abarca-209050355/",
+    logo: "/images/linkedin.png" 
+  },
+  { 
+    name: "GitHub", 
+    href: "https://github.com/zdenc0de",
+    logo: "/images/github.png" 
+  },
+  { 
+    name: "Email", 
+    href: "mailto:zdenkocruz04@gmail.com",
+    logo: null 
+  },
 ];
 
 export function Contact() {
@@ -34,7 +47,6 @@ export function Contact() {
           I'm always open to discussing new projects, internship opportunities, or just chatting about tech. Feel free to reach out.
         </motion.p>
 
-        {/* === Botón de Email Principal === */}
         <motion.div variants={fadeUp()} className="mt-10">
           <a
             href={socialLinks.find(l => l.name === "Email")?.href}
@@ -44,10 +56,9 @@ export function Contact() {
           </a>
         </motion.div>
 
-        {/* === Enlaces Sociales Secundarios === */}
         <motion.div
           variants={fadeUp()}
-          className="mt-12 flex items-center justify-center gap-6"
+          className="mt-12 flex items-center justify-center gap-10"
         >
           {socialLinks.filter(l => l.name !== "Email").map((link) => (
             <a
@@ -55,9 +66,18 @@ export function Contact() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground/70 transition-colors hover:text-foreground"
+              className="group flex flex-col items-center gap-2 text-foreground/70 transition-colors hover:text-foreground"
             >
-              {link.name}
+              <Image
+                src={link.logo!} 
+                alt={`${link.name} logo`}
+                width={32} 
+                height={32}
+                className="h-8 w-8 transition-transform duration-300 group-hover:scale-110"
+              />
+              <span className="font-medium">
+                {link.name}
+              </span>
             </a>
           ))}
         </motion.div>
