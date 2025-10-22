@@ -8,4 +8,4 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       {children}
     </ReactLenis>
   );
-}  
+}
