@@ -15,15 +15,22 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-20 md:grid-cols-2 md:py-0 min-h-screen pt-24 md:pt-28">
+    <section 
+      id="home" 
+      className="min-h-screen pt-24 md:pt-28 flex items-center justify-center"
+    >
+
+      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-2">
+
         <motion.div
-          variants={stagger(0.05)} 
+          variants={stagger(0.05)}
           initial="hidden"
           animate="show"
           className="max-w-xl text-center md:text-left"
         >
 
           <div className="space-y-6">
+            
             <motion.p
               variants={fadeUp()}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-sm font-medium"
@@ -56,7 +63,23 @@ export function Hero() {
               variants={fadeUp()}
               className="flex flex-col items-center gap-4 sm:flex-row"
             >
+              <a 
+                href="#work" 
+                onClick={(e) => scrollTo("#work", e)} 
+                className="w-full rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition-transform duration-200 hover:scale-[1.03] sm:w-auto"
+              >
+                View Projects
+              </a>
+              <Link 
+                href="/portfolio-zdenko-abarca.pdf"
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full rounded-full border border-border px-7 py-3 font-semibold text-foreground/80 transition-colors duration-200 hover:bg-muted sm:w-auto"
+              >
+                Download CV
+              </Link>
             </motion.div>
+            
           </div>
         </motion.div>
 
@@ -66,16 +89,18 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative mx-auto aspect-[4/5] w-72 max-w-[24rem] md:w-[28rem] mt-10 md:mt-0"
         >
-          <div className="absolute -inset-10 -z-10 rounded-full bg-secondary/15 blur-[6rem] " />
+          <div className="absolute -inset-10 -z-10 rounded-full bg-secondary/15 blur-[6rem]" />
           <Image
             src="/yo-delfin.jpg"
             alt="Portrait of Zdenko Abarca"
             fill
             priority
-            className="rounded-3xl object-cover ring-1 ring-border shadow-2xl "
+            className="rounded-3xl object-cover ring-1 ring-border shadow-2xl"
           />
           <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
         </motion.div>
+        
+      </div>
     </section>
   );
 }

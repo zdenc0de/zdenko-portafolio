@@ -3,24 +3,7 @@
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/components/motion/variants";
 import Image from "next/image"; 
-
-const socialLinks = [
-  { 
-    name: "LinkedIn", 
-    href: "https://www.linkedin.com/in/zdenko-abarca-209050355/",
-    logo: "/images/linkedin.png" 
-  },
-  { 
-    name: "GitHub", 
-    href: "https://github.com/zdenc0de",
-    logo: "/images/github.png" 
-  },
-  { 
-    name: "Email", 
-    href: "mailto:zdenkocruz04@gmail.com",
-    logo: null 
-  },
-];
+import { socialLinks } from "@/data/site";
 
 export function Contact() {
   return (

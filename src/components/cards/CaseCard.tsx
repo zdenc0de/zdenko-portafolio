@@ -23,7 +23,6 @@ export function CaseCard({ c }: { c: Case }) {
   return (
     <motion.article
       variants={fadeUp()}
-      // ✨ MEJORA 1: La tarjeta ahora es un contenedor flex en columna
       className="group flex flex-col rounded-2xl border border-border bg-muted/30 p-4 transition-colors hover:bg-muted/50"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
