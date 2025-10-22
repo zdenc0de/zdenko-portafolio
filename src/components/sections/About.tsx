@@ -25,11 +25,11 @@ export function About() {
           </motion.h2>
 
           <motion.p variants={fadeUp()}>
-            My journey into computer engineering began with a simple desire: to understand how things work and then build my own. I'm passionate about the entire development lifecycle, from sketching out an idea to deploying a functional, user-friendly product.
+            My journey into computer engineering began with a simple desire: to understand how things work and then build my own. I&apos;m passionate about the entire development lifecycle, from sketching out an idea to deploying a functional, user-friendly product.
           </motion.p>
 
           <motion.p variants={fadeUp()}>
-            Whether it's developing an autonomous system with ROS or building a full-stack web application, I'm driven by the challenge of solving complex problems. I believe in writing clean, efficient code and thrive in collaborative environments where I can both learn from others and contribute with my dedicated, hands-on approach.
+            Whether it&apos;s developing an autonomous system with ROS or building a full-stack web application, I&apos;m driven by the challenge of solving complex problems. I believe in writing clean, efficient code and thrive in collaborative environments where I can both learn from others and contribute with my dedicated, hands-on approach.
           </motion.p>
 
           <motion.div variants={fadeUp()} className="space-y-4 pt-4">
