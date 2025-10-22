@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -13,13 +13,16 @@ const navItems = [
   { href: "#contact", label: "Contact" },
 ];
 
+const cvUrl = "/portfolio-zdenko-abarca.pdf";
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const activeSection = useActiveSection(["#home", "#work", "#about", "#contact"]);
   const lenis = useLenis();
+  
   useEffect(() => {
     if (isMenuOpen) {
-      lenis?.stop(); 
+      lenis?.stop();
     } else {
       lenis?.start();
     }
@@ -40,6 +43,7 @@ export function Header() {
         className="fixed inset-x-0 top-4 z-50 px-4"
       >
         <div className="container mx-auto flex max-w-6xl items-center justify-between rounded-full border border-border bg-background/80 p-2 backdrop-blur-sm">
+          {/* --- Logo --- */}
           <a href="#home" onClick={(e) => scrollTo("#home", e)} className="group inline-flex items-center gap-3 px-3">
             <img className="h-5 w-auto" src="/logoy2k.png" alt="Zdencode Logo" />
             <span className="text-xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
@@ -47,6 +51,7 @@ export function Header() {
             </span>
           </a>
 
+          {/* --- Navegación de Escritorio --- */}
           <nav className="relative hidden items-center gap-1 rounded-full border border-border bg-muted/50 p-1 md:flex">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} onClick={(e) => scrollTo(item.href, e)} className={cn("relative rounded-full px-4 py-2 text-sm font-medium transition-colors", activeSection === item.href ? "text-primary-foreground" : "text-foreground/70 hover:text-foreground")}>
@@ -58,20 +63,27 @@ export function Header() {
             ))}
           </nav>
 
+          {/* --- Botón de CV para Escritorio --- */}
           <div className="hidden items-center pr-2 md:flex">
-             <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-4 py-2 text-sm font-medium text-secondary transition-colors hover:bg-secondary/10">
+             <Link href={cvUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-4 py-2 text-sm font-medium text-secondary transition-colors hover:bg-secondary/10">
                Download CV
              </Link>
           </div>
 
-          {/* --- Botón de Menú Móvil --- */}
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 md:hidden" aria-label="Toggle menu">
-            <motion.div animate={isMenuOpen ? "open" : "closed"} className="relative h-5 w-5">
-              <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 5 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '20%'}} />
-              <motion.span variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '50%'}} />
-              <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -5 } }} className="absolute h-0.5 w-full bg-foreground" style={{bottom: '20%'}}/>
-            </motion.div>
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+
+            <Link href={cvUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-3 py-1.5 text-xs font-medium text-secondary transition-colors hover:bg-secondary/10">
+              CV
+            </Link>
+
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2" aria-label="Toggle menu">
+              <motion.div animate={isMenuOpen ? "open" : "closed"} className="relative h-5 w-5">
+                <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 5 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '20%'}} />
+                <motion.span variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} className="absolute h-0.5 w-full bg-foreground" style={{top: '50%'}} />
+                <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -5 } }} className="absolute h-0.5 w-full bg-foreground" style={{bottom: '20%'}}/>
+              </motion.div>
+            </button>
+          </div>
         </div>
       </motion.header>
 
@@ -99,7 +111,7 @@ function MobileNav({ isOpen, scrollTo }: { isOpen: boolean; scrollTo: (target: s
         </motion.a>
       ))}
       <motion.div variants={itemVariants}>
-        <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-6 py-3 text-lg font-medium text-secondary">
+        <Link href={cvUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-secondary px-6 py-3 text-lg font-medium text-secondary">
           Download CV
         </Link>
       </motion.div>
