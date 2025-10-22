@@ -29,9 +29,9 @@ export function Work() {
 
         <motion.p
           variants={fadeUp()}
-          className="max-w-4xl text-lg text-foreground/80" 
+          className="max-w-4xl text-lg text-foreground/80"
         >
-          Here are a few of the projects I've worked on. These include academic,
+          Here are a few of the projects I&apos;ve worked on. These include academic,
           personal, and competition work.
         </motion.p>
       </motion.div>

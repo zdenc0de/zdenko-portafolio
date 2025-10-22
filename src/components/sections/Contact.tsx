@@ -30,7 +30,7 @@ export function Contact() {
           variants={fadeUp()}
           className="mx-auto mt-6 max-w-xl text-lg text-foreground/80"
         >
-          I'm always open to discussing new projects, internship opportunities, or just chatting about tech. Feel free to reach out.
+          I&apos;m always open to discussing new projects, internship opportunities, or just chatting about tech. Feel free to reach out.
         </motion.p>
 
         <motion.div variants={fadeUp()} className="mt-10">
