@@ -91,7 +91,7 @@ export function Hero() {
         >
           <div className="absolute -inset-10 -z-10 rounded-full bg-secondary/15 blur-[6rem]" />
           <Image
-            src="/yo-delfin.jpg"
+            src="/images/yo-delfin.jpg"
             alt="Portrait of Zdenko Abarca"
             fill
             priority
