@@ -1,4 +1,3 @@
-// Definimos un tipo para nuestros enlaces para tener autocompletado y seguridad
 export type SiteLink = {
   name: string;
   href: string;
@@ -23,11 +22,26 @@ export const socialLinks: SiteLink[] = [
   },
 ];
 
-export const techStack: string[] = [
-  "Python", 
-  "TypeScript", 
-  "React", 
-  "Next.js", 
-  "Tailwind CSS", 
-  "PostgreSQL"
+export type TechCategory = {
+  name: string;
+  items: string[];
+};
+
+export const techStack: TechCategory[] = [
+  { 
+    name: "Languages", 
+    items: ["Python", "JavaScript", "TypeScript", "SQL", "Java"] 
+  },
+  { 
+    name: "Web & Full-Stack", 
+    items: ["React", "Next.js", "Vite", "Supabase", "PostgreSQL", "TailwindCSS", "Zustand", "Framer Motion"] 
+  },
+  { 
+    name: "AI & Robotics", 
+    items: ["Scikit-learn", "TensorFlow", "Pandas", "NumPy", "Matplotlib", "ROS (Robot Operating System)"] 
+  },
+  { 
+    name: "Tools", 
+    items: ["Git", "GitHub", "Firebase", "Jupyter Notebooks", "VS Code"] 
+  },
 ];

@@ -9,7 +9,7 @@ export function Contact() {
   const currentYear = new Date().getFullYear(); 
 
   return (
-    <section id="contact" className="py-24 sm:py-32">
+    <section id="contact" className="py-24 sm:py-8 mt-10">
       <motion.div
         variants={stagger()}
         initial="hidden"
@@ -38,7 +38,7 @@ export function Contact() {
             href={socialLinks.find(l => l.name === "Email")?.href}
             className="inline-block rounded-full bg-primary px-10 py-4 text-lg font-semibold text-primary-foreground transition-transform duration-200 hover:scale-[1.03]"
           >
-            Say Hello
+            Say Hi!
           </a>
         </motion.div>
 

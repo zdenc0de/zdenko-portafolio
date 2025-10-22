@@ -1,5 +1,3 @@
-// src/components/motion/variants.ts
-
 export const stagger = (staggerChildren = 0.08, delayChildren = 0) => ({
   hidden: {},
   show: { transition: { staggerChildren, delayChildren } },
