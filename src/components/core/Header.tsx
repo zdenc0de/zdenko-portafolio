@@ -178,7 +178,6 @@ function MobileNav({
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
         stiffness: 200,
         damping: 25,
         staggerChildren: 0.1,
@@ -188,7 +187,6 @@ function MobileNav({
       opacity: 0,
       y: "-100%",
       transition: {
-        type: "spring",
         stiffness: 200,
         damping: 25,
         when: "afterChildren",
