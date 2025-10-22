@@ -8,6 +8,7 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/cn";
 import Image from "next/image";
 import { easeCurve } from "@/components/motion/variants";
+import { Variants } from "framer-motion";
 
 const navItems = [
   { href: "#work", label: "Work" },
@@ -70,14 +71,12 @@ export function Header() {
               className="h-5 w-auto"
             />
             <span
-              className="text-xl font-bold"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="text-xl font-bold font-display"
             >
               ZDENCODE
             </span>
           </a>
 
-          {/* --- Navegación de Escritorio --- */}
           <nav className="relative hidden items-center gap-1 rounded-full border border-border bg-muted/50 p-1 md:flex">
             {navItems.map((item) => (
               <a
@@ -103,7 +102,6 @@ export function Header() {
             ))}
           </nav>
 
-          {/* --- Botón de CV para Escritorio --- */}
           <div className="hidden items-center pr-2 md:flex">
             <Link
               href={cvUrl}
@@ -173,11 +171,12 @@ function MobileNav({
   isOpen: boolean;
   scrollTo: (target: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
 }) {
-  const menuVariants = {
+  const menuVariants: Variants = {
     open: {
       opacity: 1,
       y: 0,
       transition: {
+        type: "spring" as const,
         stiffness: 200,
         damping: 25,
         staggerChildren: 0.1,
@@ -185,18 +184,19 @@ function MobileNav({
     },
     closed: {
       opacity: 0,
-      y: "-100%",
+      y: -100, 
       transition: {
+        type: "spring" as const,
         stiffness: 200,
         damping: 25,
-        when: "afterChildren",
+        when: "afterChildren" as const,
       },
     },
   };
 
-  const itemVariants = {
-    open: { opacity: 1, y: 0 },
-    closed: { opacity: 0, y: 20 },
+  const itemVariants: Variants = {
+    open: { opacity: 1, y: 0, transition: { type: "tween" as const, duration: 0.25 } },
+    closed: { opacity: 0, y: 20, transition: { type: "tween" as const, duration: 0.2 } },
   };
 
   return (
@@ -217,15 +217,8 @@ function MobileNav({
           {item.label}
         </motion.a>
       ))}
+
       <motion.div variants={itemVariants}>
-        <Link
-          href={cvUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full border border-secondary px-6 py-3 text-lg font-medium text-secondary"
-        >
-          Download CV
-        </Link>
       </motion.div>
     </motion.div>
   );

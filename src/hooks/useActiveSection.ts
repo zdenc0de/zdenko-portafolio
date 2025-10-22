@@ -1,4 +1,3 @@
-// src/hooks/useActiveSection.ts
 import { useState, useEffect } from "react";
 
 export function useActiveSection(sectionIds: string[]) {
@@ -14,14 +13,12 @@ export function useActiveSection(sectionIds: string[]) {
         });
       },
       {
-        // El trigger se activa cuando la sección cruza la línea central de la pantalla
         rootMargin: "-50% 0px -50% 0px",
         threshold: 0,
       }
     );
 
     sectionIds.forEach((id) => {
-      // Quitamos el '#' para buscar el elemento por ID
       const el = document.querySelector(id);
       if (el) observer.observe(el);
     });

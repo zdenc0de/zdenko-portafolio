@@ -28,7 +28,12 @@ export function CaseCard({ c }: { c: Case }) {
       onMouseLeave={handleMouseLeave}
     >
 
-      <Link href={`/projects/${c.slug}`} className="flex flex-col flex-1">
+      <Link 
+        href={c.repoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-col flex-1"
+      >
 
         <div>
           <div className="relative mb-4 aspect-[16/10] w-full overflow-hidden rounded-xl ring-1 ring-border">

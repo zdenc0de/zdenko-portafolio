@@ -6,4 +6,5 @@ export type Case = {
   video?: string;      
   tags: string[];
   impact?: string;
+  repoUrl: string;
 };
