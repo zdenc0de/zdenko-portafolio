@@ -1,15 +1,19 @@
+import type { Metadata } from 'next'; 
 import "./globals.css";
 import { Plus_Jakarta_Sans, Bebas_Neue } from "next/font/google";
-
 import { LenisProvider } from "@/components/motion/LenisProvider"; 
 
 const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
 const display = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-display" });
 
+export const metadata: Metadata = {
+  title: "Zdenko Abarca - Portfolio",
+  description: "Portfolio of Zdenko Abarca",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-
       <body className={`${sans.variable} ${display.variable} antialiased`}>
         <LenisProvider>
           {children}
