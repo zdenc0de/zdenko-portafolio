@@ -7,6 +7,7 @@ import { useLenis } from "lenis/react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/cn";
 import Image from "next/image";
+import { easeCurve } from "@/components/motion/variants";
 
 const navItems = [
   { href: "#work", label: "Work" },
@@ -51,7 +52,7 @@ export function Header() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.5, ease: easeCurve }}
         className="fixed inset-x-0 top-4 z-50 px-4"
       >
         <div className="container mx-auto flex max-w-6xl items-center justify-between rounded-full border border-border bg-background/80 p-2 backdrop-blur-sm">
