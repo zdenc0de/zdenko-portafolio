@@ -6,15 +6,18 @@ import Image from "next/image";
 import { socialLinks } from "@/data/site";
 
 export function Contact() {
+  const currentYear = new Date().getFullYear(); 
+
   return (
     <section id="contact" className="py-24 sm:py-32">
       <motion.div
         variants={stagger()}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, amount: 0.2 }}
         className="mx-auto max-w-6xl px-6 text-center"
       >
+        {/* --- Contenido Principal --- */}
         <motion.h2
           variants={fadeUp()}
           className="text-4xl font-black text-foreground md:text-6xl"
@@ -63,6 +66,20 @@ export function Contact() {
               </span>
             </a>
           ))}
+        </motion.div>
+
+        <motion.div 
+          variants={fadeUp()}
+          className="mt-16 border-t border-border pt-8"
+        >
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <p className="text-sm text-foreground/70">
+              &copy; {currentYear} Zdenko Abarca. All rights reserved.
+            </p>
+            <p className="text-sm text-foreground/70">
+              Built with Next.js, Tailwind CSS, and Framer Motion.
+            </p>
+          </div>
         </motion.div>
       </motion.div>
     </section>
