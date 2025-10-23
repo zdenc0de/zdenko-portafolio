@@ -7,15 +7,14 @@ import { techStack } from "@/data/site";
 
 export function About() {
   return (
-    <section id="about" className="py-24 sm:py-32">
+    <section id="about" className="min-h-screen pt-24 md:pt-28 flex items-center justify-center">
       <motion.div
         variants={stagger()}
         initial="hidden"
-        whileInView="show"
+        animate="show"
         viewport={{ once: true, amount: 0.4 }}
-        className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-6 md:grid-cols-2"
+        className="grid max-w-6xl grid-cols-1 gap-16 px-6 md:grid-cols-2"
       >
-        {/* Columna texto */}
         <div className="space-y-6 text-foreground/80 md:text-lg">
           <motion.h2
             variants={fadeUp()}
@@ -43,7 +42,7 @@ export function About() {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
           className="relative mx-auto h-96 w-full max-w-sm"
         >
           <Image
@@ -55,28 +54,26 @@ export function About() {
           <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-border" />
         </motion.div>
 
-        <motion.div
-          variants={fadeUp()}
-          className="md:col-span-2"
-        >
-          <h3 className="text-2xl font-bold text-foreground">My Tech Stack</h3>
+          <motion.div variants={fadeUp()} className="space-y-4 pt-6 md:col-span-2">
+            <h3 className="text-xl font-bold text-foreground">My Tech Stack</h3>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {techStack.map((category) => (
-              <div key={category.name} className="min-w-0">
-                <p className="text-lg font-semibold text-foreground/90">{category.name}</p>
-                <ul className="mt-3 space-y-2 text-foreground/80">
-                  {category.items.map((tech: string) => (
-                    <li key={tech} className="flex items-start gap-2">
-                      <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary" />
-                      <span className="leading-relaxed">{tech}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+            <div 
+
+              className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-4" 
+            >
+
+              {techStack.map((category) => (
+                <div key={category.name} className="space-y-2"> 
+                  <p className="text-base text-foreground/90 font-bold">{category.name}</p>
+                  <ul className="space-y-1 text-base text-muted-foreground">
+                    {category.items.map((tech) => (
+                      <li key={tech}>{tech}</li> 
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
       </motion.div>
     </section>
   );

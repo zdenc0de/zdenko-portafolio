@@ -9,7 +9,7 @@ export function Contact() {
   const currentYear = new Date().getFullYear(); 
 
   return (
-    <section id="contact" className="py-24 sm:py-8 mt-10">
+    <section id="contact" className="min-h-screen pt-24 md:pt-28 flex items-center justify-center pb-4">
       <motion.div
         variants={stagger()}
         initial="hidden"
@@ -17,7 +17,6 @@ export function Contact() {
         viewport={{ once: true, amount: 0.2 }}
         className="mx-auto max-w-6xl px-6 text-center"
       >
-        {/* --- Contenido Principal --- */}
         <motion.h2
           variants={fadeUp()}
           className="text-4xl font-black text-foreground md:text-6xl"
@@ -52,7 +51,7 @@ export function Contact() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-2 text-foreground/70 transition-colors hover:text-foreground"
+              className="group flex flex-col items-center gap-2 p-3 text-foreground/70 transition-colors hover:text-foreground"
             >
               <Image
                 src={link.logo!} 

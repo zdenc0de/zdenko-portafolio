@@ -23,7 +23,7 @@ export function CaseCard({ c }: { c: Case }) {
   return (
     <motion.article
       variants={fadeUp()}
-      className="group flex flex-col rounded-2xl border border-border bg-muted/30 p-4 transition-colors hover:bg-muted/50"
+      className="group flex relative flex-col rounded-2xl border border-border bg-muted/30 p-4 transition-colors hover:bg-muted/50"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -32,7 +32,7 @@ export function CaseCard({ c }: { c: Case }) {
         href={c.repoUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-col flex-1"
+        className="relative z-10 flex flex-col flex-1"
       >
 
         <div>
@@ -68,7 +68,7 @@ export function CaseCard({ c }: { c: Case }) {
           <p className="mt-2 text-foreground/80">{c.blurb}</p>
         </div>
 
-        <div className="flex-grow" />
+        <div className="flex-grow pointer-events-none"/>
 
         <div className="mt-4 flex flex-wrap gap-2 text-sm text-muted-foreground">
           {c.tags.map((t) => (

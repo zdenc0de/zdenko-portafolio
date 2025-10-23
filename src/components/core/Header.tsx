@@ -2,13 +2,12 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/cn";
 import Image from "next/image";
 import { easeCurve } from "@/components/motion/variants";
-import { Variants } from "framer-motion";
 
 const navItems = [
   { href: "#work", label: "Work" },
@@ -20,26 +19,14 @@ const cvUrl = "/portfolio-zdenko-abarca.pdf";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const activeSection = useActiveSection([
-    "#home",
-    "#work",
-    "#about",
-    "#contact",
-  ]);
+  const activeSection = useActiveSection(["#home", "#work", "#about", "#contact"]);
   const lenis = useLenis();
 
   useEffect(() => {
-    if (isMenuOpen) {
-      lenis?.stop();
-    } else {
-      lenis?.start();
-    }
+    isMenuOpen ? lenis?.stop() : lenis?.start();
   }, [isMenuOpen, lenis]);
 
-  const scrollTo = (
-    target: string,
-    e?: React.MouseEvent<HTMLAnchorElement>
-  ) => {
+  const scrollTo = (target: string, e?: React.MouseEvent<HTMLAnchorElement>) => {
     e?.preventDefault();
     lenis?.scrollTo(target, {
       duration: 1.5,
@@ -57,26 +44,17 @@ export function Header() {
         className="fixed inset-x-0 top-4 z-50 px-4"
       >
         <div className="container mx-auto flex max-w-6xl items-center justify-between rounded-full border border-border bg-background/80 p-2 backdrop-blur-sm">
-          {/* --- Logo --- */}
+          {/* Logo */}
           <a
             href="#home"
             onClick={(e) => scrollTo("#home", e)}
             className="group inline-flex items-center gap-3 px-3"
           >
-            <Image
-              src="/logoy2k.png"
-              alt="Zdencode Logo"
-              width={20} 
-              height={20}
-              className="h-5 w-auto"
-            />
-            <span
-              className="text-xl font-bold font-display"
-            >
-              ZDENCODE
-            </span>
+            <Image src="/logoy2k.png" alt="Zdencode Logo" width={20} height={20} className="h-5 w-auto" />
+            <span className="text-xl font-bold font-display">ZDENCODE</span>
           </a>
 
+          {/* Nav desktop */}
           <nav className="relative hidden items-center gap-1 rounded-full border border-border bg-muted/50 p-1 md:flex">
             {navItems.map((item) => (
               <a
@@ -102,6 +80,7 @@ export function Header() {
             ))}
           </nav>
 
+          {/* CV desktop */}
           <div className="hidden items-center pr-2 md:flex">
             <Link
               href={cvUrl}
@@ -113,6 +92,7 @@ export function Header() {
             </Link>
           </div>
 
+          {/* Botones móvil */}
           <div className="flex items-center gap-2 md:hidden">
             <Link
               href={cvUrl}
@@ -124,19 +104,13 @@ export function Header() {
             </Link>
 
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => setIsMenuOpen((v) => !v)}
               className="p-2"
               aria-label="Toggle menu"
             >
-              <motion.div
-                animate={isMenuOpen ? "open" : "closed"}
-                className="relative h-5 w-5"
-              >
+              <motion.div animate={isMenuOpen ? "open" : "closed"} className="relative h-5 w-5">
                 <motion.span
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: 45, y: 5 },
-                  }}
+                  variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 5 } }}
                   className="absolute h-0.5 w-full bg-foreground"
                   style={{ top: "20%" }}
                 />
@@ -146,10 +120,7 @@ export function Header() {
                   style={{ top: "50%" }}
                 />
                 <motion.span
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: -45, y: -5 },
-                  }}
+                  variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -5 } }}
                   className="absolute h-0.5 w-full bg-foreground"
                   style={{ bottom: "20%" }}
                 />
@@ -159,7 +130,16 @@ export function Header() {
         </div>
       </motion.header>
 
-      <MobileNav isOpen={isMenuOpen} scrollTo={scrollTo} />
+      <AnimatePresence>
+        {isMenuOpen && (
+          <MobileNav
+            key="mobile-nav"
+            isOpen={isMenuOpen}
+            scrollTo={scrollTo}
+            onClose={() => setIsMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
@@ -167,44 +147,32 @@ export function Header() {
 function MobileNav({
   isOpen,
   scrollTo,
+  onClose,
 }: {
   isOpen: boolean;
   scrollTo: (target: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClose: () => void;
 }) {
   const menuVariants: Variants = {
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 200,
-        damping: 25,
-        staggerChildren: 0.1,
-      },
-    },
-    closed: {
-      opacity: 0,
-      y: -100, 
-      transition: {
-        type: "spring" as const,
-        stiffness: 200,
-        damping: 25,
-        when: "afterChildren" as const,
-      },
-    },
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.2 } },
+    exit: { opacity: 0, transition: { duration: 0.15 } },
   };
 
   const itemVariants: Variants = {
-    open: { opacity: 1, y: 0, transition: { type: "tween" as const, duration: 0.25 } },
-    closed: { opacity: 0, y: 20, transition: { type: "tween" as const, duration: 0.2 } },
+    initial: { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0, transition: { type: "tween" as const, duration: 0.22 } },
+    exit: { opacity: 0, y: 8, transition: { type: "tween" as const, duration: 0.15 } },
   };
 
   return (
     <motion.div
       variants={menuVariants}
-      initial="closed"
-      animate={isOpen ? "open" : "closed"}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       className="fixed inset-0 z-40 flex flex-col items-center justify-center space-y-8 bg-background md:hidden"
+      onClick={onClose} // tap fuera cierra
     >
       {navItems.map((item) => (
         <motion.a
@@ -217,8 +185,16 @@ function MobileNav({
           {item.label}
         </motion.a>
       ))}
-
       <motion.div variants={itemVariants}>
+        <Link
+          href={cvUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full border border-secondary px-6 py-3 text-lg font-medium text-secondary"
+          onClick={onClose}
+        >
+          Download CV
+        </Link>
       </motion.div>
     </motion.div>
   );
