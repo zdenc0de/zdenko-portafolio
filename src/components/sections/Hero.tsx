@@ -39,7 +39,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
               </span>
-              2028 Graduate | Seeking Internship Opportunities
+              Automation & Digitization Intern @ Bosch | Class of 2028
             </motion.p>
 
             <motion.h1
@@ -48,15 +48,15 @@ export function Hero() {
               style={{ fontFamily: "var(--font-display)" }}
             >
               <span className="block">Computer Engineering</span>
-              <span className="block">Student & Aspiring</span>
-              <span className="block">Software Builder</span>
+              <span className="block">Student & Software</span>
+              <span className="block">Developer</span>
             </motion.h1>
 
             <motion.p
               variants={fadeUp()}
               className="text-lg text-foreground/80"
             >
-              Driven by a deep curiosity, I thrive on turning theory into practice. From mastering new web technologies to exploring AI, my dedication lies in the entire building process—from the first line of code to a functional, impactful product.
+              Currently driving digital transformation at Bosch, I blend academic rigor with real-world impact. From enterprise applications to AI-powered solutions, I thrive on building software that solves complex problems at scale.
             </motion.p>
 
             <motion.div

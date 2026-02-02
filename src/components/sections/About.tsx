@@ -26,15 +26,16 @@ export function About() {
 
           <motion.p variants={fadeUp()}>
             My journey into computer engineering began with a simple desire: to understand
-            how things work and then build my own. I&apos;m passionate about the entire development
-            lifecycle, from sketching out an idea to deploying a functional, user-friendly product.
+            how things work and then build my own. Now, as an Automation & Digitization Intern at
+            Bosch, I&apos;m turning that curiosity into real-world impact—developing enterprise solutions
+            that streamline manufacturing processes.
           </motion.p>
 
           <motion.p variants={fadeUp()}>
-            Whether it&apos;s developing an autonomous system with ROS or building a full-stack web
-            application, I&apos;m driven by the challenge of solving complex problems. I believe in
-            writing clean, efficient code and thrive in collaborative environments where I can both
-            learn from others and contribute with my dedicated, hands-on approach.
+            From building autonomous systems with ROS to creating full-stack web applications and
+            Power BI dashboards, I thrive on solving complex problems across the entire tech stack.
+            I believe in writing clean, efficient code and excel in collaborative environments where
+            I can contribute with a dedicated, hands-on approach while continuously learning.
           </motion.p>
         </div>
 
@@ -59,7 +60,7 @@ export function About() {
 
             <div 
 
-              className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-4" 
+              className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-5" 
             >
 
               {techStack.map((category) => (

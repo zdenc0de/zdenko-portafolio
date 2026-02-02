@@ -11,6 +11,7 @@ import { easeCurve } from "@/components/motion/variants";
 
 const navItems = [
   { href: "#work", label: "Work" },
+  { href: "#experience", label: "Experience" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
@@ -19,7 +20,7 @@ const cvUrl = "/portfolio-zdenko-abarca.pdf";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const activeSection = useActiveSection(["#home", "#work", "#about", "#contact"]);
+  const activeSection = useActiveSection(["#home", "#work", "#experience", "#about", "#contact"]);
   const lenis = useLenis();
 
   useEffect(() => {

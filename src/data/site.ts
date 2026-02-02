@@ -28,20 +28,24 @@ export type TechCategory = {
 };
 
 export const techStack: TechCategory[] = [
-  { 
-    name: "Languages", 
-    items: ["Python", "JavaScript", "TypeScript", "SQL", "Java"] 
+  {
+    name: "Languages",
+    items: ["Python", "JavaScript", "TypeScript", "C#", "PHP", "SQL", "Java"]
   },
-  { 
-    name: "Web & Full-Stack", 
-    items: ["React", "Next.js", "Vite", "Supabase", "PostgreSQL", "TailwindCSS", "Zustand", "Framer Motion"] 
+  {
+    name: "Web & Full-Stack",
+    items: ["React", "Next.js", "Angular", ".NET", "Vite", "Supabase", "PostgreSQL", "TailwindCSS"]
   },
-  { 
-    name: "AI & Robotics", 
-    items: ["Scikit-learn", "TensorFlow", "Pandas", "NumPy", "Matplotlib", "ROS (Robot Operating System)"] 
+  {
+    name: "Data & Enterprise",
+    items: ["SQL Server", "Power BI", "Pandas", "NumPy", "Matplotlib", "Firebase"]
   },
-  { 
-    name: "Tools", 
-    items: ["Git", "GitHub", "Firebase", "Jupyter Notebooks", "VS Code"] 
+  {
+    name: "AI & Robotics",
+    items: ["Scikit-learn", "TensorFlow", "ROS", "Jetson Nano", "LiDAR", "OpenCV"]
+  },
+  {
+    name: "Tools",
+    items: ["Git", "GitHub", "VS Code", "Jupyter", "Azure DevOps"]
   },
 ];
